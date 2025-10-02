@@ -5,10 +5,10 @@ import (
 	"os"
 )
 
-func ReadCsv(filename) (Lookup [][]string, err string) {
+func ReadCsv(filename string) (Lookup [][]string, err string) {
 	file, err := os.Open(filename)
 	if err != nil {
-		return "", "err"
+		return nil, err
 	}
 
 	defer file.Close()
@@ -17,7 +17,7 @@ func ReadCsv(filename) (Lookup [][]string, err string) {
 	lookup, err := reader.ReadAll()
 
 	if err != nil {
-		return "", "err"
+		return nil, "err"
 	}
 
 	return lookup, nil
