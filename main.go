@@ -39,8 +39,10 @@ func main() {
 		return
 	}
 
-	inputData := ReadInput(os.Args[1])
-	WriteOutput(inputData)
+	inputString := ReadInput(os.Args[1])
+	outputString := changeAirportName(inputString)
+
+	WriteOutput(inputString)
 
 	fmt.Println("ok")
 	return

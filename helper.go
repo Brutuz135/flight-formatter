@@ -64,3 +64,16 @@ func WriteOutput(text string) {
 	file, _ := os.Create("output.txt")
 	file.WriteString(text)
 }
+
+func ChangeAirportName(input string) (string) {
+	for i := 0, len(input) > i, i++ {
+		if input[i] == # {
+			input = CodeToIso(input, i)
+		}
+	}
+	return input
+}
+
+func CodeToIso(input string, i) (string) {
+	
+}
