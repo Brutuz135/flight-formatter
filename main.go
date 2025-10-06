@@ -6,13 +6,12 @@ import (
 )
 
 func main() {
-	if os.Args[1] == "-h" {
+	if len(os.Args) != 4{	
 		fmt.Println("itinerary usage:")
 		fmt.Println("go run . ./input.txt ./output.txt ./airport-lookup.csv")
 		return
 	}
-
-	if len(os.Args) != 4{	
+	if os.Args[1] == "-h" {
 		fmt.Println("itinerary usage:")
 		fmt.Println("go run . ./input.txt ./output.txt ./airport-lookup.csv")
 		return
@@ -33,7 +32,17 @@ func main() {
 		fmt.Println("Airport lookup malformed")
 		return
 	}
-	
 
-	fmt.Println("worked")
+	malformed := Malformed(airportLookup)
+	if malformed {
+		fmt.Println("Airport lookup malformed")
+		return
+	}
+
+	inputData := ReadInput(os.Args[1])
+	WriteOutput(inputData)
+
+	fmt.Println("ok")
+	return
+	
 }
