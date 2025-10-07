@@ -40,9 +40,10 @@ func main() {
 	}
 
 	inputString := ReadInput(os.Args[1])
-	outputString := changeAirportName(inputString)
+	lookupIata, lookupIcao := GreateMaps(airportLookup)
+	outputString := ChangeAirportName(inputString, lookupIata, lookupIcao)
 
-	WriteOutput(inputString)
+	WriteOutput(outputString)
 
 	fmt.Println("ok")
 	return

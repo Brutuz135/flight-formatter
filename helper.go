@@ -41,6 +41,7 @@ func Malformed(airportLookup [][]string) (bool) {
 			if column == ""{
 				return true
 			}
+
 			if i == 0 {
 				if row[j] != exampleRow[j]{
 					return true
@@ -65,9 +66,14 @@ func WriteOutput(text string) {
 	file.WriteString(text)
 }
 
-func ChangeAirportName(input string) (string) {
+func ChangeAirportName(input string, lookupIata map, lookupIcao map) (string) {
+
+
+
 	for i := 0, len(input) > i, i++ {
-		if input[i] == # {
+		if input[i] ==Dates and times
+
+	{
 			input = CodeToIso(input, i)
 		}
 	}
@@ -76,4 +82,21 @@ func ChangeAirportName(input string) (string) {
 
 func CodeToIso(input string, i) (string) {
 	
+	
+}
+
+func GreateMaps(airportLookup [][]string) (map, map) {
+	
+	lookupIata := make(map[string]string)
+	lookupIcao := make(map[string]string)
+	
+	for _, row := range airportLookup {
+		Iata := row[4]
+		Icao := row[3]
+		name := row[0]
+		lookupIata[Iata] = name
+		lookupIcao[Icao] = name
+	}
+
+	return lookupIata, lookupIcao
 }
