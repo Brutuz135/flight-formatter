@@ -44,8 +44,9 @@ func main() {
 	outputString := ChangeAirportName(inputString, lookupIata, lookupIcao)
 
 	WriteOutput(outputString)
-
+	output := ReadInput(os.Args[2])
 	fmt.Println("ok")
+	fmt.Println(output)
 	return
 	
 }

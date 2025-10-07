@@ -66,26 +66,41 @@ func WriteOutput(text string) {
 	file.WriteString(text)
 }
 
-func ChangeAirportName(input string, lookupIata map, lookupIcao map) (string) {
+func ChangeAirportName(input string, lookupIata map[string]string, lookupIcao map[string]string) (string) {
 
 
+	output := ""
+	for i := 0; len(input) > i; i++ {
 
-	for i := 0, len(input) > i, i++ {
-		if input[i] ==Dates and times
-
-	{
-			input = CodeToIso(input, i)
+		found := false
+		value := ""
+		key := ""
+		jump := 0
+		if input[i] == '#' && input[i+1] == '#' && i+6 <= len(input) {
+			key = input[i+2 : i+6]
+			value, found = lookupIcao[key]
+			jump = 6
+		} else if input[i] == '#' {
+			key = input[i+1 : i+4]
+			value, found = lookupIata[key]
+			jump = 4
 		}
+		if found {
+			output = output + value
+			i += jump
+		} else {
+			output = output + string(input[i])
+		}
+
 	}
-	return input
+	return output
 }
 
-func CodeToIso(input string, i) (string) {
-	
-	
-}
 
-func GreateMaps(airportLookup [][]string) (map, map) {
+	
+	
+	
+func GreateMaps(airportLookup [][]string) (map[string]string, map[string]string) {
 	
 	lookupIata := make(map[string]string)
 	lookupIcao := make(map[string]string)
