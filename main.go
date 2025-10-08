@@ -30,7 +30,6 @@ func main() {
 	airportLookup, err := ReadCsv(os.Args[3])
 	if err != nil {
 		fmt.Println("Airport lookup malformed")
-		return
 	}
 
 	malformed := Malformed(airportLookup)
@@ -42,11 +41,11 @@ func main() {
 	inputString := ReadInput(os.Args[1])
 	lookupIata, lookupIcao := GreateMaps(airportLookup)
 	outputString := ChangeAirportName(inputString, lookupIata, lookupIcao)
+	outputString  = ChangeTime(outputString)
 
 	WriteOutput(outputString)
 	output := ReadInput(os.Args[2])
 	fmt.Println("ok")
 	fmt.Println(output)
 	return
-	
 }
