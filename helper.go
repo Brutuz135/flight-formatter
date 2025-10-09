@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/csv"
 	"os"
+	"time"
+	"regexp"
 )
 
 func ReadCsv(filename string) ([][]string, error) {
@@ -115,3 +117,21 @@ func GreateMaps(airportLookup [][]string) (map[string]string, map[string]string)
 
 	return lookupIata, lookupIcao
 }
+
+func ChangeTime(input string) (string) {
+ 	dre := regexp.MustCompile(`D\([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(Z|[+-][0-9]{2}:[0-9]{2})\)`)
+	
+	output := dre.ReplaceAllStringFunc(input, DateChange)
+	return output
+	
+
+}
+
+func DateChange(input string) (string) {
+	t, _ := time.Parse(time.RFC3339, input)
+	newDate := t.Format("02 Jan 2006")
+	return newDate
+}
+
+	
+
