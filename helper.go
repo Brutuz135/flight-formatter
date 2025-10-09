@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/csv"
 	"os"
-	"time"
 	"regexp"
+	"time"
 )
 
 func ReadCsv(filename string) ([][]string, error) {
@@ -120,15 +120,42 @@ func GreateMaps(airportLookup [][]string) (map[string]string, map[string]string)
 
 func ChangeTime(input string) (string) {
  	dre := regexp.MustCompile(`D\([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(Z|[+-][0-9]{2}:[0-9]{2})\)`)
-	
+	reT12 := regexp.MustCompile(`T12\([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(Z|[+-][0-9]{2}:[0-9]{2})\)`)
+	reT24 := regexp.MustCompile(`T24\([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(Z|[+-][0-9]{2}:[0-9]{2})\)`)
+
 	output := dre.ReplaceAllStringFunc(input, DateChange)
+	output = reT12.ReplaceAllStringFunc(output, T12Change)
+	output = reT24.ReplaceAllStringFunc(output, T24Change)
 	return output
 	
 
 }
 
+func T24Change(input string) (string) {
+	input = input[4:len(input)-1]
+	layout := "2006-01-02T15:04Z07:00"
+
+	t, _ := time.Parse(layout, input)
+	newDate := t.Format("15:04 (-07:00)")
+	return newDate
+}
+
+
+
+func T12Change(input string) (string) {
+	input = input[4:len(input)-1]
+	layout := "2006-01-02T15:04Z07:00"
+
+	t, _ := time.Parse(layout, input)
+	newDate := t.Format("03:04PM (-07:00)")
+	return newDate
+}
+
 func DateChange(input string) (string) {
-	t, _ := time.Parse(time.RFC3339, input)
+	input = input[2:len(input)-1] 
+	layout := "2006-01-02T15:04Z07:00"
+
+	t, _ := time.Parse(layout, input)
 	newDate := t.Format("02 Jan 2006")
 	return newDate
 }
