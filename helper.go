@@ -160,5 +160,13 @@ func DateChange(input string) (string) {
 	return newDate
 }
 
+func TrimSpaces(input string) (string) {
+	re := regexp.MustCompile(`[\v\f\r]`)
+	input = re.ReplaceAllString(input, "\n")
+
+	ren := regexp.MustCompile(`\n{3,}`)
+	input = ren.ReplaceAllString(input, "\n\n")
+	return input
+}
 	
 
