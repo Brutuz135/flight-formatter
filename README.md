@@ -86,8 +86,8 @@ In all error cases, the output file is **not created or modified**.
 Flight itinerary for customer
 
 Departing from #LAX to ##EGLL
-Date: D(2025-04-05T12:30−02:00)
-Departure time: T24(2025-04-05T12:30−02:00)
+Date: D(2025-04-05T12:30-02:00)
+Departure time: T24(2025-04-05T12:30-02:00)
 Arrival time: T12(2025-04-05T23:30Z)
 
 Connecting flight from *#CDG to #XXX
@@ -95,6 +95,15 @@ Connecting flight from *#CDG to #XXX
 \v\f
 
 Thank you for flying with us!
+
+here I test
+ \r
+
+
+here I test  \v
+
+
+here I test  \l
 ```
 
 ### Example airport lookup (`airport-lookup.csv`)
