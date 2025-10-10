@@ -95,15 +95,6 @@ Connecting flight from *#CDG to #XXX
 
 
 Thank you for flying with us!
-
-here I test 
- \r
-
-
-here I test  \v
-
-
-here I test  \l
 ```
 
 ### Example airport lookup (`airport-lookup.csv`)
@@ -126,15 +117,6 @@ Arrival time: 11:30PM (+00:00)
 Connecting flight from Paris to #XXX
 
 Thank you for flying with us!
-
-here I test 
- \r
-
-here I test 
- \v
-
-here I test 
- \l
 ```
 
 ---
