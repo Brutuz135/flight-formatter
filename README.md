@@ -92,11 +92,11 @@ Arrival time: T12(2025-04-05T23:30Z)
 
 Connecting flight from *#CDG to #XXX
 
-\v\f
+
 
 Thank you for flying with us!
 
-here I test
+here I test 
  \r
 
 
