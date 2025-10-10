@@ -63,12 +63,12 @@ func ReadInput(file string) (string) {
 	return string(data)
 }
 
-func WriteOutput(text string) {
-	file, _ := os.Create("output.txt")
+func WriteOutput(text string, filename string) {
+	file, _ := os.Create(filename)
 	file.WriteString(text)
 }
 
-func ChangeAirportName(input string, lookupIata map[string]string, lookupIcao map[string]string) (string) {
+func ChangeAirportName(input string, lookupIata map[string]string, lookupIcao map[string]string, nameToMuncipality map[string]string) (string) {
 
 
 	output := ""
@@ -81,11 +81,23 @@ func ChangeAirportName(input string, lookupIata map[string]string, lookupIcao ma
 		if input[i] == '#' && input[i+1] == '#' && i+6 <= len(input) {
 			key = input[i+2 : i+6]
 			value, found = lookupIcao[key]
-			jump = 6
+			jump = 6 
+
+			if input[i - 1] == '*' && i > 0 {
+				value, found = nameToMuncipality[value]
+				jump += 1
+				output = output[0 : len(output)-1]			
+			}
 		} else if input[i] == '#' {
 			key = input[i+1 : i+4]
 			value, found = lookupIata[key]
 			jump = 4
+			
+			if input[i - 1] == '*' && i > 0 {
+				value, found = nameToMuncipality[value]
+				jump += 1
+				output = output[0 : len(output)-1]	
+			}
 		}
 		if found {
 			output = output + value
@@ -102,20 +114,23 @@ func ChangeAirportName(input string, lookupIata map[string]string, lookupIcao ma
 	
 	
 	
-func GreateMaps(airportLookup [][]string) (map[string]string, map[string]string) {
+func GreateMaps(airportLookup [][]string) (map[string]string, map[string]string, map[string]string) {
 	
 	lookupIata := make(map[string]string)
 	lookupIcao := make(map[string]string)
+	nameToMuncipality := make(map[string]string)
 	
 	for _, row := range airportLookup {
 		Iata := row[4]
 		Icao := row[3]
 		name := row[0]
+		municipality := row[2]
 		lookupIata[Iata] = name
 		lookupIcao[Icao] = name
+		nameToMuncipality[name] = municipality
 	}
 
-	return lookupIata, lookupIcao
+	return lookupIata, lookupIcao, nameToMuncipality
 }
 
 func ChangeTime(input string) (string) {

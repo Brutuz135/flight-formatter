@@ -39,16 +39,12 @@ func main() {
 	}
 
 	inputString := ReadInput(os.Args[1])
-	lookupIata, lookupIcao := GreateMaps(airportLookup)
-	outputString := ChangeAirportName(inputString, lookupIata, lookupIcao)
+	lookupIata, lookupIcao, nameToMuncipality := GreateMaps(airportLookup)
+	outputString := ChangeAirportName(inputString, lookupIata, lookupIcao, nameToMuncipality)
 	outputString = ChangeTime(outputString)
 	outputString = TrimSpaces(outputString) 
 
-	fmt.Printf("BEFORE:\n%q\n", inputString)
-	fmt.Printf("AFTER:\n%q\n", outputString)
-
-
-	WriteOutput(outputString)
+	WriteOutput(outputString, os.Args[2])
 	output := ReadInput(os.Args[2])
 	fmt.Println(output)
 	return
