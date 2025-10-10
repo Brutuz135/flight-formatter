@@ -81,21 +81,19 @@ func ChangeAirportName(input string, lookupIata map[string]string, lookupIcao ma
 		if input[i] == '#' && input[i+1] == '#' && i+6 <= len(input) {
 			key = input[i+2 : i+6]
 			value, found = lookupIcao[key]
-			jump = 6 
+			jump = 5 
 
 			if input[i - 1] == '*' && i > 0 {
 				value, found = nameToMuncipality[value]
-				jump += 1
 				output = output[0 : len(output)-1]			
 			}
 		} else if input[i] == '#' {
 			key = input[i+1 : i+4]
 			value, found = lookupIata[key]
-			jump = 4
+			jump = 3
 			
 			if input[i - 1] == '*' && i > 0 {
 				value, found = nameToMuncipality[value]
-				jump += 1
 				output = output[0 : len(output)-1]	
 			}
 		}
