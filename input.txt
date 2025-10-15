@@ -1,0 +1,12 @@
+Flight itinerary for customer
+
+Departing from #LAX to ##EGLL
+Date: D(2025-04-05T12:30-02:00)
+Departure time: T24(2025-04-05T12:30-02:00)
+Arrival time: T12(2025-04-05T23:30Z)
+
+Connecting flight from *#CDG to #XXX
+
+
+
+Thank you for flying with us!
