@@ -30,6 +30,7 @@ func main() {
 	airportLookup, err := ReadCsv(os.Args[3])
 	if err != nil {
 		fmt.Println("Airport lookup malformed")
+		return
 	}
 
 	malformed := Malformed(airportLookup)
@@ -45,7 +46,7 @@ func main() {
 	outputString = TrimSpaces(outputString) 
 
 	WriteOutput(outputString, os.Args[2])
-	output := ReadInput(os.Args[2])
-	fmt.Println(output)
+	//output := ReadInput(os.Args[2])
+	//fmt.Println(output)
 	return
 }
